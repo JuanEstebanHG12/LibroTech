@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -15,13 +16,14 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity // importante para que funcione @PreAuthorize
 public class SecurityConfig {
 
 
     //Crea el codificador BCrypt y lo registra como bean para que Spring pueda inyectarlo donde haga falta.
     //Codifica las contraseñas para guardarlas de forma segura.
     @Bean
-    public BCryptPasswordEncoder passwordEncoder() {
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
@@ -53,7 +55,8 @@ public class SecurityConfig {
                 .authenticationProvider(authenticationProvider) //Usa el proveedor de autenticación DaoAuthenticationProvider
                 .csrf(csrf -> csrf.disable()) //Desactiva el filtro CSRF, si no se desactiva, puede ser un problema de seguridad, se debe activar cuando se usan cookies(cuando la sesionse guardan en cookies, el navegador lo asocia a mi dominio y cuando se hace una peticion desde otra pestaña a ese dominio, envia la cookie)
                 .authorizeHttpRequests(a -> a
-                        .requestMatchers("/api/v1/auth/**").permitAll() //Permite el acceso público a los endpoints de autenticación
+                        .requestMatchers("/api/v1/auth/**").permitAll()//Permite el acceso público a los endpoints de autenticación
+                        .requestMatchers("/api/v1/genres/**").permitAll()
                         .requestMatchers("/api/v1/user/**").hasRole("ADMIN") //Requiere que el usuario esté autenticado y tenga el rol ADMIN
                         .anyRequest().authenticated()
                 )
