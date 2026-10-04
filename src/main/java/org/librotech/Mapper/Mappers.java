@@ -1,6 +1,7 @@
 package org.librotech.Mapper;
 
 
+import org.librotech.dto.RequestDTOs.EditorialRequestDTO;
 import org.librotech.dto.RequestDTOs.GenreRequestDTO;
 import org.librotech.dto.ResponseDTOs.BookResponseDTO;
 import org.librotech.dto.ResponseDTOs.EditorialResponseDTO;
@@ -26,7 +27,7 @@ public interface Mappers {
 
     //Editorial
     EditorialResponseDTO toEditorialResponseDTO(Editorial editorial);
-    Editorial toEditorial(EditorialResponseDTO editorialResponseDTO);
+    Editorial toEditorial(EditorialRequestDTO editorialRequestDTO);
 
     //Book
     BookResponseDTO toBookResponseDTO(Book book);
