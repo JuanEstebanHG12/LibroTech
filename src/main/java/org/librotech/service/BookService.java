@@ -15,11 +15,13 @@ import org.librotech.repository.GenreRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
+@Transactional(readOnly = true)
 public class BookService {
     private final BookRepositry bookRepositry;
     private final GenreRepository genreRepository;
@@ -48,6 +50,7 @@ public class BookService {
         return mappers.toBookResponseDTO(bookRepositry.findById(id).orElseThrow());
     }
 
+    @Transactional
     public BookResponseDTO save(BookRequestDTO bookRequestDTO) {
         Editorial editorial = editorialRepository.findById(bookRequestDTO.editorialId()).orElseThrow(() -> new EditorialNotFoundException(bookRequestDTO.editorialId()));
         Set<Genre> genres = bookRequestDTO.genreIds().stream()
