@@ -58,6 +58,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/v1/auth/**").permitAll()//Permite el acceso público a los endpoints de autenticación
                         .requestMatchers("/api/v1/editorials/**").permitAll()
                         .requestMatchers("/api/v1/genres/**").permitAll()
+                        .requestMatchers("/api/v1/books/**").permitAll()
                         .requestMatchers("/api/v1/user/**").hasRole("ADMIN") //Requiere que el usuario esté autenticado y tenga el rol ADMIN
                         .anyRequest().authenticated()
                 )
