@@ -1,6 +1,7 @@
 package org.librotech.Mapper;
 
 
+import org.librotech.dto.RequestDTOs.BookRequestDTO;
 import org.librotech.dto.RequestDTOs.EditorialRequestDTO;
 import org.librotech.dto.RequestDTOs.GenreRequestDTO;
 import org.librotech.dto.ResponseDTOs.BookResponseDTO;
@@ -31,6 +32,6 @@ public interface Mappers {
 
     //Book
     BookResponseDTO toBookResponseDTO(Book book);
-    Book toBook(BookResponseDTO bookResponseDTO);
+    Book toBook(BookRequestDTO bookRequestDTO);
 
 }
