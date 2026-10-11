@@ -1,10 +1,8 @@
 package org.librotech.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.hibernate.annotations.BatchSize;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -12,6 +10,7 @@ import java.util.Set;
 @Entity
 @Table(name = "books")
 @Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -33,6 +32,7 @@ public class Book {
             @JoinTable(name = "book_genre",
                     joinColumns = @JoinColumn(name = "book_id"),
                     inverseJoinColumns = @JoinColumn(name = "genre_id"))
+    @BatchSize(size = 20)
     private Set<Genre> genres = new HashSet<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -40,11 +40,11 @@ public class Book {
     private Editorial editorial;
 
     @Column(name = "year", nullable = false)
-    int year;
+    private int year;
 
     @Column(name = "pages", nullable = false)
-    int pages;
+    private int pages;
 
     @Column(name = "summary", nullable = false, length = 1000)
-    String summary;
+    private String summary;
 }
