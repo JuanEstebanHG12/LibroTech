@@ -8,6 +8,7 @@ import org.librotech.dto.ResponseDTOs.BookResponseDTO;
 import org.librotech.dto.ResponseDTOs.EditorialResponseDTO;
 import org.librotech.dto.ResponseDTOs.GenreResponseDTO;
 import org.librotech.dto.ResponseDTOs.UserDTO;
+import org.librotech.dto.simpleDTOs.BookSimpleDTO;
 import org.librotech.model.Book;
 import org.librotech.model.Editorial;
 import org.librotech.model.Genre;
@@ -32,6 +33,7 @@ public interface Mappers {
 
     //Book
     BookResponseDTO toBookResponseDTO(Book book);
+    BookSimpleDTO toBookSimpleDTO(Book book);
     Book toBook(BookRequestDTO bookRequestDTO);
 
 }
