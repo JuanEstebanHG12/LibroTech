@@ -56,9 +56,22 @@ public class BookService {
         Set<Genre> genres = bookRequestDTO.genreIds().stream()
                 .map(id -> genreRepository.findById(id).orElseThrow(() -> new GenreNotFoundException(id)))
                 .collect(Collectors.toSet());
-        Book book = mappers.toBook(bookRequestDTO);
-        book.setGenres(genres);
-        book.setEditorial(editorial);
+//        Book book = mappers.toBook(bookRequestDTO);
+//        book.setGenres(genres);
+//        book.setEditorial(editorial);
+//        book = bookRepositry.save(book);
+
+        //Se usa el patron builder para crear un objeto Book en este caso es mejor que el mapper porque es mas limpio y legible y además se crea el objeto inmutable
+        Book book = Book.builder()
+                .title(bookRequestDTO.title())
+                .author(bookRequestDTO.author())
+                .isbn(bookRequestDTO.isbn())
+                .year(bookRequestDTO.year())
+                .pages(bookRequestDTO.pages())
+                .summary(bookRequestDTO.summary())
+                .editorial(editorial)
+                .genres(genres)
+                .build();
         book = bookRepositry.save(book);
         return mappers.toBookResponseDTO(book);
     }
