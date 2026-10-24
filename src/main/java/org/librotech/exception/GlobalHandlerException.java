@@ -38,4 +38,10 @@ public class GlobalHandlerException {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body(Map.of("error", ex.getMessage()));
     }
+
+    @ExceptionHandler({EditorialNotFoundException.class, GenreNotFoundException.class})
+    public ResponseEntity<Map<String, Object>> handleEntityNotFoundException(RuntimeException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(Map.of("error", ex.getMessage()));
+    }
 }
