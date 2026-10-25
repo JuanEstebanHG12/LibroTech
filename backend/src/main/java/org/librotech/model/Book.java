@@ -46,4 +46,8 @@ public class Book {
 
     @Column(name = "summary", nullable = false, length = 1000)
     private String summary;
+
+    @Column(name = "active", nullable = false, columnDefinition = "boolean default true")
+    @Builder.Default
+    private boolean active = true;
 }
