@@ -23,7 +23,4 @@ public class Editorial {
 
     @Column(name = "name", nullable = false, length = 100)
     private String name;
-
-    @OneToMany(mappedBy = "editorial")
-    private List<Book> books = new ArrayList<>();
 }

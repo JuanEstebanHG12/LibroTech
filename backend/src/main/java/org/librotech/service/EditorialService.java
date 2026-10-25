@@ -31,7 +31,9 @@ public class EditorialService {
     }
 
     public EditorialResponseDTO save(EditorialRequestDTO editorialRequestDTO){
-        Editorial editorial = mappers.toEditorial(editorialRequestDTO);
+        Editorial editorial = Editorial.builder()
+                .name(editorialRequestDTO.name())
+                .build();
         editorial = editorialRepository.save(editorial);
         return mappers.toEditorialResponseDTO(editorial);
     }
