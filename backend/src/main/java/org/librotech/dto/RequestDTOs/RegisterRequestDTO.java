@@ -15,13 +15,17 @@ public record RegisterRequestDTO(
                 message = "Password must contain at least one digit, one lowercase letter, and one uppercase letter"
         )
         String password,
+        @Pattern(
+                regexp = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).*$",
+                message = "Password must contain at least one digit, one lowercase letter, and one uppercase letter"
+        )
+        String confirmPassword,
+
         @NotBlank(message = "Name is required")
         @Size(min = 2, message = "Name must be at least 2 characters long")
         String name,
         @NotBlank(message = "Last name is required")
         @Size(min = 2, message = "Last name must be at least 2 characters long")
-        String lastName,
-        @Enumerated(EnumType.STRING)
-        String role
+        String lastName
 ) {
 }
