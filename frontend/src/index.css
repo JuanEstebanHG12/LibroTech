@@ -1,1 +1,15 @@
 @import "tailwindcss";
+
+@theme {
+  --font-sans: "Arimo", sans-serif;
+  --font-brand: "Lora", serif;
+  --font-display: "Tinos", serif;
+
+  --color-navy-900: #18334d;
+  --color-navy-800: #183450;
+  --color-amber-brand: #d68a21;
+  --color-muted: #7e8ea5;
+  --color-placeholder: #8b9cb0;
+  --color-field: #f1f3f1;
+  --color-field-border: #d8e0e6;
+}
