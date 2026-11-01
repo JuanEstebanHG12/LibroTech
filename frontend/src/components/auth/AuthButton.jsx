@@ -1,12 +1,20 @@
-function AuthButton({ children, ...props }) {
+import { ArrowRight, Loader2 } from 'lucide-react'
+
+function AuthButton({ children, loading = false, ...props }) {
   return (
     <button
       type="submit"
-      className="flex h-[45px] w-full cursor-pointer items-center justify-center gap-2.5 rounded-[3px] bg-navy-800 text-white transition-colors hover:bg-navy-900"
+      disabled={loading}
+      aria-busy={loading}
+      className="flex h-12 w-full cursor-pointer items-center justify-center gap-2 rounded-md bg-primary px-6 text-base leading-6 font-semibold text-primary-fg transition-colors hover:bg-primary-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:cursor-not-allowed disabled:opacity-70"
       {...props}
     >
-      <span className="text-[11px] font-bold">{children}</span>
-      <span className="text-[17px] leading-[18px]" aria-hidden="true">→</span>
+      {children}
+      {loading ? (
+        <Loader2 className="size-5 animate-spin" aria-hidden="true" />
+      ) : (
+        <ArrowRight className="size-5" aria-hidden="true" />
+      )}
     </button>
   )
 }
