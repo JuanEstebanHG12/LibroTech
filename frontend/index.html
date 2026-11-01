@@ -4,11 +4,19 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Libro Tech · Inicio de sesión</title>
+    <title>LibroTech</title>
+    <script>
+      // Aplica el tema guardado antes del primer pintado para evitar el parpadeo
+      try {
+        var t = localStorage.getItem("theme");
+        if (!t) t = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;700&family=Lora:wght@700&family=Tinos:wght@700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,600,0,1&family=Inter:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
   </head>

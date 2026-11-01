@@ -1,15 +1,80 @@
 @import "tailwindcss";
 
-@theme {
-  --font-sans: "Arimo", sans-serif;
-  --font-brand: "Lora", serif;
-  --font-display: "Tinos", serif;
+/*
+ * Tokens semánticos del sistema de diseño v2 (Figma · "v2 · Sistema de diseño").
+ * Los valores cambian según el tema; los componentes solo consumen el nombre semántico.
+ */
+:root {
+  --bg-auth: #16304d;
+  --bg-surface: #ffffff;
+  --bg-input: #ffffff;
+  --border-default: #d9dfe6;
+  --text-heading: #16304d;
+  --text-primary: #161c27;
+  --text-secondary: #4b586c;
+  --text-muted: #5c697f;
+  --text-accent: #8a5f15;
+  --action-primary-bg: #16304d;
+  --action-primary-text: #ffffff;
+  --action-primary-bg-hover: #0c1d32;
+  --text-error: #b42318;
+}
 
-  --color-navy-900: #18334d;
-  --color-navy-800: #183450;
-  --color-amber-brand: #d68a21;
-  --color-muted: #7e8ea5;
-  --color-placeholder: #8b9cb0;
-  --color-field: #f1f3f1;
-  --color-field-border: #d8e0e6;
+:root[data-theme="dark"] {
+  --bg-auth: #0c1d32;
+  --bg-surface: #161c27;
+  --bg-input: #0c1018;
+  --border-default: #394456;
+  --text-heading: #f4f6f8;
+  --text-primary: #eaeef2;
+  --text-secondary: #bcc5d0;
+  --text-muted: #8e9aab;
+  --text-accent: #f4cb55;
+  --action-primary-bg: #e6b230;
+  --action-primary-text: #0c1d32;
+  --action-primary-bg-hover: #f4cb55;
+  --text-error: #fda29b;
+}
+
+@theme inline {
+  --font-sans: "Inter", sans-serif;
+  --font-display: "Fraunces", serif;
+
+  /* Semánticos (dependen del tema) */
+  --color-auth: var(--bg-auth);
+  --color-surface: var(--bg-surface);
+  --color-field: var(--bg-input);
+  --color-line: var(--border-default);
+  --color-heading: var(--text-heading);
+  --color-ink: var(--text-primary);
+  --color-ink-soft: var(--text-secondary);
+  --color-ink-muted: var(--text-muted);
+  --color-accent: var(--text-accent);
+  --color-primary: var(--action-primary-bg);
+  --color-primary-hover: var(--action-primary-bg-hover);
+  --color-primary-fg: var(--action-primary-text);
+  --color-danger: var(--text-error);
+}
+
+@theme {
+  /* Constantes de marca (iguales en ambos temas) */
+  --color-brand: #e6b230;
+  --color-on-brand: #0c1d32;
+  --color-on-dark: #ffffff;
+  --color-on-dark-muted: #98abc7;
+
+  --radius-sm: 0.5rem;
+  --radius-md: 0.625rem;
+}
+
+@layer base {
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--bg-surface);
+  }
+
+  /* Fraunces se usa con los ejes SOFT=0 y WONK=1 definidos en el diseño */
+  .font-display {
+    font-variation-settings: "SOFT" 0, "WONK" 1;
+  }
 }
