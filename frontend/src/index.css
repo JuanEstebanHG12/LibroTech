@@ -91,8 +91,16 @@
     background-color: var(--bg-canvas);
   }
 
+  input,
+  select,
+  textarea {
+    outline: none;
+  }
+
   /* Fraunces se usa con los ejes SOFT=0 y WONK=1 definidos en el diseño */
   .font-display {
     font-variation-settings: "SOFT" 0, "WONK" 1;
   }
 }
+
+
