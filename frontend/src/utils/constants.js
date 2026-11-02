@@ -9,6 +9,13 @@ export const ENV = {
         REFRESH_ACCES_TOKEN: "auth/refresh-token",
         USERS: {
             USER_ME: "user/me",
+        },
+        BOOKS: {
+            GET_BOOKS: "books",
+            GET_BOOK_BY_ID: "books/:id",
+            CREATE_BOOK: "books",
+            UPDATE_BOOK: "books/:id",
+            DELETE_BOOK: "books/:id"
         }
     },
     JWT: {
