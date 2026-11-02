@@ -35,8 +35,8 @@ public class BookService {
         this.mappers = mappers;
     }
 
-    public Page<BookResponseDTO> findAll(Pageable pageable) {
-        return bookRepositry.findAll(pageable).map(mappers::toBookResponseDTO);
+    public Page<BookResponseDTO> findAll(String search, Long genreId, Long editorialId, Pageable pageable) {
+        return bookRepositry.findAllWithFilters(search, genreId, editorialId, pageable).map(mappers::toBookResponseDTO);
     }
 
 //    public BookResponseDTO addEditorial(Long editorialID, Long bookID) {

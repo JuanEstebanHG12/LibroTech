@@ -19,8 +19,13 @@ public class BookController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<BookResponseDTO>> findAll(Pageable pageable) {
-        return ResponseEntity.ok(bookService.findAll(pageable));
+    public ResponseEntity<Page<BookResponseDTO>> findAll(
+            @RequestParam(required = false) String search,
+            @RequestParam(required = false) Long genreId,
+            @RequestParam(required = false) Long editorialId,
+            Pageable pageable
+    ) {
+        return ResponseEntity.ok(bookService.findAll(search, genreId, editorialId, pageable));
     }
 
     @GetMapping("/{id}")
