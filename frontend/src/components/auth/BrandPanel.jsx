@@ -1,7 +1,7 @@
 import { Check } from 'lucide-react'
 import decorGold from '../../assets/auth/decor-gold.svg'
 import decorNavy from '../../assets/auth/decor-navy.svg'
-import Logo from './Logo'
+import Logo from '../ui/Logo'
 
 const CURRENT_YEAR = new Date().getFullYear()
 
